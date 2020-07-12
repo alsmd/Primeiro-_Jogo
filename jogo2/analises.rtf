@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 6.3.9600}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang22\par
+\par
+
+\pard\sa200\sl276\slmult1\qc\b\fs52 Canvas\par
+
+\pard\sa200\sl276\slmult1\fs22\par
+\fs32 *come\'e7a a definir as variaveis do jogo\par
+\tab *var canvas, ctx, ALTURA, LARGURA, frames=0\par
+*definir as funcoes padroes\par
+\tab *function main()\{\}\par
+\tab *function clique()\{\}\par
+\tab *function roda()\{\}\par
+\tab *function atualiza()\{\}\par
+\tab *function desenha()\{\}\par
+
+\pard\sa200\sl276\slmult1\qc Procedimentos realizados no main()\par
+
+\pard\sa200\sl276\slmult1 1\'ba primeiramente pesquise  a altura e a largura da tela do  jogador e guarde em suas respectivas variaveis\par
+\tab *caso a largura seja maior ou =500, a largura e a altura t\tab er\'e3o um valor fixo de 600\par
+\par
+2\'ba\par
+\tab *crie um elemento canvas e o coloque em sua variavel\par
+\tab *defina a altura e largura dessa canvas como as largura e \tab altura que definimos no passo anterior\par
+\tab *nao utilizar o parametro style\par
+\tab *adcione uma  borda\par
+\tab *e com css centralize a canvas\par
+\tab *defina o valor de ctx\par
+\tab *crie uma condi\'e7\'e3o para caso o mouse clickar na area \tab visivel no browser disparar a fun\'e7\'e3o clique\par
+\tab *adcione a canvas no html\par
+\tab *chamamos a funcao roda, que sera o loop do jogo\par
+\tab *dentro do roda, adcionamos a funcao atualiza e depois \tab a funcao desenha, para atualizar e desenhar sempre \tab assim criando a anima\'e7\'e3o\par
+\tab *para deixarmos a fun\'e7\'e3o roda como um loop, \tab adcionamos o seguinte comando dentro ela:\tab window.requestAnimationFrame(roda), que chama a \tab fun\'e7\'e3o definida como parametro, criando assim um loop\par
+\tab *em atualiza adicione o frame ++, para termos os frames \tab do nosso jogo caso for preciso\par
+\tab *em atualiza() iremos vai atualizar status do \tab personagem, obstaculos do jogo\par
+\tab *e no desenha() iremos desenhas as coisas apos atualizar\par
+\tab *em desenha() adcione o nosso background do jogo\par
+\par
+\par
+3\'bapara colocarmos  o  chao devemos colocar para come\'e7ar no y:550, ja que nosso canvas tem 600 e o chao 50 de altura e a mesmo largura da tela\par
+\tab *abrir a variavel chao e abre chaves para inserir \tab atributos e metodos nela\par
+\tab *posicione o chao com o y = altura geral - this.altura, \par
+\tab *largura sera a mesma da largura geral\par
+\par
+\par
+\par
+\tab\par
+4\'baCriando bloco e logica da gravidade\par
+\tab *gravidade:defina uma var com a gravidade\par
+\tab *defina uma valocidade inicial\par
+4.1\'bacrie uma function  para o bloco para atualizalo\par
+\tab *dentro desse atualiza que ira ser adcionado na funcao \tab de atualizar defeniremos que a velocidade ira receber o \tab valor dela mesmo + a gravidade, e como a fun\'e7\'e3o \tab atualiza(da fun main) esta atualmente em um looping o \tab valor de \tab velocidade ira ser aumententado de forma c\tab onstante\par
+\tab *agora o valor do y do nosso bloco ira receber o valor  \tab dele mesmo + o valor atual de velocidade, tambem \tab aumentando seu valor  constantemente\par
+4.2\'baagora basta adcionarmos uma logica para que quando o y chegue na posi\'e7\'e3o  do chao ele mantenha o valor\par
+\tab *se a posicao do bloco > posicao do chao - posicao do \tab bloco a posi\'e7\'e3o do bloco devera ser  a posicao do chao -\tab posicao do bloco\par
+\tab *come\'e7a a programar uma function pro pulo\par
+\tab *basta mudar sua velocidade para um valor negativo para o \tab bloco subir com o eixo y\par
+\tab *agora basta que chamemos essa function na function clique\par
+\tab *para limitarmos a quantidade de pulo nos criamos uma var \tab global com a quantidade de pulos max que queremos, e \tab dentro do bloco nos criamos um atribudo para quantos pulos \tab nos ja demos, colocamos essa qntPulos dentro da function \tab pulo como recebendo +1\par
+\tab *executamos o pulo() apenas se a quantidade de pulos que \tab ja demos for menor que a quantidade de pulos max\par
+\tab *e para que nao ocorra o erro de sermos capazes apenas de  \tab realizar 3 pulos por jogo, nos definimos que quando o bloco \tab estiver no chao o qntPulos vai ser igual a 0\par
+\par
+5\'baInserindo obstaculos\ul\par
+\ulnone\b0\tab 5.1\'ba\b crie uma variavel para obstaculo\par
+\tab *como atributo crie uma array de nome obs(objetos)\par
+\tab *criamos um metodo(func) para inserir o elemento na array\par
+\tab *crie um push para inserir objetos no array obs\par
+\tab *dentro desse push iremos inserir outro objeto abrindo e \tab fechando chaves\par
+\tab *esse objeto tera os seguintes atributos:\par
+\tab *um x com a mesma largura que a nossa tela(para que nosso \tab obstaculo seja redenrizado no final da tela)\par
+\tab *uma largura, que sera gerada randomicamente com valores \tab entre 30 e 50\par
+\tab *uma altura, variando entre 30 e 100 px(posso alterar \tab furamente)\par
+\tab *iremos criar cores aleatorias para nosso obstaculo e para \tab isso:\par
+\tab\tab 1\'bana var obstaculo insira um atributo cores do tipo \tab\tab\tab aray, ele ira guardar as cores que ser\'e3o aleatoriamente \tab\tab\tab aplicadas\par
+\tab\tab 2\'badentro do push, adcionamos um atributo para cor, e \tab\tab\tab definimos como sendo o array cores com indice \tab\tab\tab\tab aleatorio que varia de 0 a (valor de cores inseridas na \tab\tab\tab array)\par
+\tab\b0 5.2\'ba  \b criamos o metodo(func) atualiza e depois desenho \tab\tab\tab (dentro da var obstaculo)\par
+\tab\tab *dentro de desenho nos criamos um for com uma \tab\tab\tab variavel para servir de indice e uma var para armazenar \tab\tab o tamanho da nossa array obs, esse for ira rodar \tab\tab\tab\tab enquanto o indice for menor que o tamanho da array, \tab\tab\tab sendo que o indice ganha ++ a cada rodada.\par
+\tab\tab *assim podemos percorrer nossa array\par
+\tab\tab *para desenharmos nosso obstaculos basta:\par
+\tab\tab\tab 1\'baselecionar  nossa array obs com o indice da var \tab\tab\tab\tab que definimos no for\par
+\tab\tab\tab 2\'ba utilize o fillStyle para definir a cor utlizilando:\par
+\tab\tab\tab * this.obs[i].cor\par
+\tab\tab\tab 2.1\'bautilizamos o '.' pois os itens presentes em obs \tab\tab\tab tambem sao objetos, e ja definimos sua cor \tab\tab\tab\tab\tab anteriormente\par
+\tab\tab\tab 3\'bautilize o fillRect para desenhar utilizando:\par
+\tab\tab\tab *(obs[i].x, chao.y - obs[i].altura, obs[i].largura, \tab\tab\tab\tab  obs[i].largur9a )\par
+\tab\tab\tab *(lembrando que os itens da array obs s\'e3o \tab\tab\tab\tab\tab objetos e possuiem atributos)\par
+6\'baMovimento objeto e adcionamento automatico\par
+\tab *no atualiza do obstaculos n\'f3s percorremos a array obs, (que \tab\'e9 onde nossos obstaculos seram adcionados) e \tab decrementamos seu x com x -= velocidade, sendo \tab velocidade um var com o valor desejado\par
+\tab *quando esse obstaculo sair de tela, exclua-o e decremente \tab\tab o valor de tam e i para que n ocorre erro\par
+\tab *primeiramente criamos um novo atributo para \tab tempoInsere com valor 0 \par
+\tab *agora, dentro de atualiza() definimos uma condi\'e7\'e3o para \tab caso o tempoInsere for <= 0 ele chamar a fun\'e7\'e3o inseri(), \tab desenhando assim o nosso objeto na tela, e caso n\'e3o seja \tab n\'f3s decrementamos o valor de tempoInsere em 1\par
+\tab *agora dentro da fun\'e7\'e3o inseri n\'f3s defimos o tempoInseri \tab como sendo um numero aleatorio entre 20 e   50 + ou-\par
+\tab *assim sempre que o atualiza() chamar o inseri(), o  \tab tempoInsere vai valer entre 20 e 50 nao atendendo assim a \tab condi\'e7\'e3o para chamar outro bloco entrando portanto no \tab bloco de codigos do else que decrementa o seu valor \par
+\tab *assim tera um espa\'e7o aleatorio entre os blocos chamados\par
+7\'baprimeiro criamos uma var para carregar o (estadoAtual);\par
+*criar uma var estados que tenha como propriedade os estados do jogo; jogar:0,jogando:1, perdeu:2;\par
+*na fun\'e7\'e3o main antes de roda() atribuimos o estadoAtual = estados.jogar;\par
+*em desenha nos atribuimos uma condicional para caso o estadoAtual  for igual a jogar desenhamos um quadrado verde no meio da tela, ele tera 100 por 100\par
+*se for  o perdeu iremos desenhar o mesmo quadrado, mas vermelho\par
+*se for jogando, desenhamos os obstaculos\par
+*so iremos atualizar o nosso bloco caso o estamo for jogando \par
+*agora nois iremos configurar a fun\'e7\'e3o clique:\par
+*iremos pular caso o estado atual seja  estados.jogando\par
+*caso estadoAtual seja jogar, nosso estado atual ira muda para jogando\par
+* e se  o estado atual for estados.perdeu, nosso estado atual ira receber jogando\par
+*dentro dos obstaculos no fun\'e7\'e3o que remove o obs n\'f3s \'e1 colocamos como else if\par
+* e o seu if sera a condi\'e7\'e3o de colis\'e3o;\par
+*depois do atualizar dos obstaculos nos criamos uma fun\'e7\'e3o limpa, que ira limpar os nossos arrays\par
+*em atualizar nos iremos verificar se nossos estados \'e9 igual perdeu, se for nos chamamos nossa fun\'e7\'e3o limpa\par
+\par
+*quando eu clickar em no perdeu o bloco.y recebe 0\par
+*e sempre que o bloco estiver no ch\'e3o ele recebera volocidade = 0, pois a velocidade da gravidade estava continuando a incrementar depois de chegar ao solo\par
+\par
+*para fazer a anima\'e7\'e3o do bloco caindo basta fazer com que o bloco fique no ch\'e3o apenas se ele for diferente de estado perdeu, logo se ele tiver estado perdeu ele ira cair\par
+*e teremos que zerar sua velocidade novamente no clique do perdeu, por conta de incrementamos novamente a velocidade ao fazelo cair\par
+*para fazer com  que o jogador tenha que esperar o nosso bloco cair so pra depois poder jogar novamente, basta adcionar uma condi\'e7ao no clique do estado atual perdeu\par
+como sendo y bloco > que 2x nossa altura\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\b0\fs22\par
+\par
+}
+ 
